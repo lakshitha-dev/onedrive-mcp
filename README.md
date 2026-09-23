@@ -126,9 +126,15 @@ to start in Production without it.
 }
 ```
 
-The Entra app registration needs the **delegated** permissions `Files.ReadWrite`, `User.Read`,
-`openid`, `profile` and `offline_access`. Without `offline_access` no refresh token is issued and
-every call pays for a fresh token exchange.
+This needs one Entra app registration — a directory object, not a deployment; no Azure resources
+are created and nothing is hosted. It takes about five minutes:
+**[docs/app-registration.md](docs/app-registration.md)**.
+
+The short version: one registration, single tenant, redirect URI `/signin-oidc`, Application ID
+URI `api://<client-id>`, and the **delegated** Graph permissions `Files.ReadWrite`, `User.Read`,
+`openid`, `profile` and `offline_access`. Delegated rather than Application, because application
+permissions would reach every drive in the tenant regardless of who is asking. Without
+`offline_access` Entra issues no refresh token and every call pays for a fresh token exchange.
 
 With authentication on, an anonymous request to `/mcp` returns `401` with
 `WWW-Authenticate: Bearer resource_metadata="..."`, which is how a client discovers where to sign
@@ -143,6 +149,9 @@ hand. That is the part most worth reading before deploying:
 .\scripts\set-secrets.ps1        # store tenant, client id and secret in .NET user secrets
 .\scripts\run-local-oauth.ps1    # full sign-in flow, all on localhost
 ```
+
+No Azure subscription, resource group or hosting is needed for either of those — everything runs
+on localhost against that one registration.
 
 ## Configuration
 
