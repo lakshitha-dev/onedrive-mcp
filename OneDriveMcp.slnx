@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OneDriveMcp.Core/OneDriveMcp.Core.csproj" />
+    <Project Path="src/OneDriveMcp.Server/OneDriveMcp.Server.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/OneDriveMcp.Core.Tests/OneDriveMcp.Core.Tests.csproj" />
+    <Project Path="tests/OneDriveMcp.Server.Tests/OneDriveMcp.Server.Tests.csproj" />
+  </Folder>
+</Solution>

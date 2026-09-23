@@ -1,0 +1,55 @@
+## Build output
+bin/
+obj/
+publish/
+publish-output/
+*.user
+*.suo
+.vs/
+.vscode/
+artifacts/
+TestResults/
+*.trx
+coverage*.xml
+
+## ---------------------------------------------------------------------------
+## Secrets. Every rule below exists because the file it names has, in some
+## project somewhere, been committed by accident -- and a credential in git
+## history stays there after the commit is amended away. Do not relax them.
+## ---------------------------------------------------------------------------
+set-env.ps1
+set-env.sh
+*.env
+.env
+.env.*
+!.env.example
+.azure/
+entra-app-config-*.json
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
+
+## OAuth runtime state. Encrypted at rest, but this is delegated access to real drives --
+## it is per-deployment state, not source, and has no business in a repository.
+oauth-state.json
+entra-refresh-tokens.json
+dp-keys/
+
+## Local run artefacts. *.log is deliberately broad: the explicit names kept
+## missing new ones (last-gateway-test-run.log was unmatched for weeks).
+*.log
+.mcp-session.json
+preview-*.html
+.tmp-secret-backup.txt
+
+## Tooling scratch
+.specclaw/
+
+## Scripts for the private multi-plugin gateway this server was extracted from.
+## They name real infrastructure and test a server that is not in this repo.
+scripts/test-gateway.ps1
+scripts/set-gateway-dev-secret.ps1
+
+## OS noise
+.DS_Store
+Thumbs.db
